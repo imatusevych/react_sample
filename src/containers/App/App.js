@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Page from './../Page/Page';
-import Blog from './../Blog/Blog';
-import About from './../About/About';
-import Works from './../Works/Works';
 import { BrowserRouter } from 'react-router-dom';
-import { Route } from 'react-router-dom';
 
 class App extends Component {
 	render() {

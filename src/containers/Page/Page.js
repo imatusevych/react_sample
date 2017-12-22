@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import Aux from './../noc/_Aux';
-import Menu from './../../components/Menu/Menu';
 import Author from './../../components/Author/Author';
 import Blog from './../Blog/Blog';
-import About from './../About/About';
-import Works from './../Works/Works';
-import BlogDetail from './../../components/BlogDetail/BlogDetail';
+import PageDetail from './../PageDetail/PageDetail';
+import ArticleDetail from './../../components/ArticleDetail/ArticleDetail';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
 
@@ -13,14 +10,11 @@ class Page extends Component{
 	state = {
 		menu: {
 			items:[
-				{ id:1, name: "Blog" },
-				{ id:2, name: "Works"},
-				{ id:3, name: "About"}
 			]
 		},
 		auhtorInfo: {
 			id: 1,
-			name:"Auhot name",
+			name:"Author name",
 			pathPic : "images/pic/my-pic.png",
 			description: "Web developer"
 		},
@@ -62,12 +56,13 @@ class Page extends Component{
 	}
 
 	render() {
-		let authorContent = <div>Error data access</div>;
-
-		authorContent = (
+		let authorContent = <div>Error server data access</div>;
+		if(!this.state.errorServerResponseAuthor || !this.state.errorServerResponseMenu){
+			authorContent = (
 				<Author info={this.state.auhtorInfo} items={this.state.menu.items}/>
-		);
-		
+			);
+		}
+
     	return (
 			<div className="row">
 				<div className="col-md-3">
@@ -76,9 +71,9 @@ class Page extends Component{
 				<div className="col-md-9">
 					<Route path="/" exact component={Blog}/>
 					<Route path="/Blog" exact component={Blog}/>
-					<Route path="/Works" exact component={Works}/>
-					<Route path="/About" exact component={About}/>
-					<Route path="/detail/:id" exact component={BlogDetail}/>
+					<Route path="/Work" exact component={PageDetail}/>
+					<Route path="/About" exact component={PageDetail}/>
+					<Route path="/detail/:id" exact component={ArticleDetail}/>
 				</div>
 			</div>
     	);
